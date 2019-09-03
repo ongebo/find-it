@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">find-it</string>
+    <string name="login_activity_label">FindIt</string>
+    <string name="login_title">Login to FindIt</string>
+    <string name="email_hint">Enter Email</string>
+    <string name="password_hint">Enter Password</string>
+    <string name="login_button_text">Login</string>
+    <string name="password_reset_text">Reset Password</string>
+    <string name="signup_prompt">Don\'t Have an Account?</string>
+    <string name="signup_button_text">Sign Up</string>
 </resources>
