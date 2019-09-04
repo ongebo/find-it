@@ -5,4 +5,5 @@
     <color name="colorAccent">#774ac8</color>
     <color name="loginButtonTextColor">#ffffff</color>
     <color name="passwordResetColor">#068c11</color>
+    <color name="errorOutputColor">#d10023</color>
 </resources>
