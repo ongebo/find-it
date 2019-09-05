@@ -32,6 +32,7 @@ cache:
 before_install:
   - yes | sdkmanager "platforms;android-27"
   - yes | sdkmanager "platforms;android-28"
+  - pip install --user codecov
 
 before_script:
   # create an AVD for running connected checks
@@ -44,3 +45,7 @@ script:
   - ./gradlew lint  # run linter
   - ./gradlew test  # run unit tests
   - ./gradlew connectedCheck  # run instrumentation tests
+  - bash <(curl -s https://codecov.io/bash)
+
+after_success:
+  - codecov
