@@ -19,7 +19,7 @@ import retrofit2.Response;
 
 class LoginPresenter {
     private FindItAPI api;
-    private LoginView view;
+    private final LoginView view;
 
     LoginPresenter(LoginView view) {
         api = FindItService.getAPI();
@@ -35,6 +35,7 @@ class LoginPresenter {
             ) {
                 if (response.isSuccessful()) {
                     view.onLoginSuccess(response.body());
+                    notifyWaitingThreads();
                 } else {
                     try {
                         JsonElement loginJsonError = new JsonParser().parse(
@@ -47,6 +48,8 @@ class LoginPresenter {
                         view.onLoginFailure(errorResponse);
                     } catch (IOException e) {
                         // Backend problem: API didn't return a JSON error string.
+                    } finally {
+                        notifyWaitingThreads();
                     }
                 }
             }
@@ -57,7 +60,14 @@ class LoginPresenter {
                     @NonNull Throwable t
             ) {
                 view.onNetworkError();
+                notifyWaitingThreads();
             }
         });
+    }
+
+    private void notifyWaitingThreads() {
+        synchronized (view) {
+            view.notifyAll();
+        }
     }
 }
