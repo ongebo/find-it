@@ -45,6 +45,7 @@ script:
   - ./gradlew lint  # run linter
   - ./gradlew test  # run unit tests
   - ./gradlew connectedCheck  # run instrumentation tests
+  - ./gradlew jacocoTestReport  # generate jacoco test report
   - bash <(curl -s https://codecov.io/bash)
 
 after_success:
